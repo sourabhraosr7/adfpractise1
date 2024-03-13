@@ -1,0 +1,27 @@
+{
+	"name": "DS_META",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_TXT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "tables.txt",
+				"fileSystem": "tablesist"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	}
+}
