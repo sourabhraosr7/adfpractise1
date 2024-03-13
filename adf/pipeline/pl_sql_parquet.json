@@ -17,7 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select * from dbo.orders;",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -43,13 +42,19 @@
 				"inputs": [
 					{
 						"referenceName": "SqlServerTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table": "orders"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "DS_PARQ",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "orders"
+						}
 					}
 				]
 			}

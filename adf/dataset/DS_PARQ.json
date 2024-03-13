@@ -5,11 +5,20 @@
 			"referenceName": "LS_PARQ",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tablename": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().tablename",
+					"type": "Expression"
+				},
 				"fileSystem": "input"
 			},
 			"compressionCodec": "snappy"
