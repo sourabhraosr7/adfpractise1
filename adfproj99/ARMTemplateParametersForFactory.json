@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfproj99"
+		},
+		"LS_PARQ_accountKey": {
+			"value": ""
+		},
+		"LS_TXT_accountKey": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"LS_PARQ_properties_typeProperties_url": {
+			"value": "https://str1234s.dfs.core.windows.net/"
+		},
+		"LS_TXT_properties_typeProperties_url": {
+			"value": "https://str1234s.dfs.core.windows.net/"
+		}
+	}
+}
