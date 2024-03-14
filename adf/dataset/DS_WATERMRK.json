@@ -1,0 +1,26 @@
+{
+	"name": "DS_WATERMRK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "tabl_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "timestamp",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktbl"
+		}
+	}
+}
