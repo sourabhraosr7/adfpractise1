@@ -1,0 +1,91 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_PROD_SCD",
+						"type": "DatasetReference"
+					},
+					"name": "ffproduct"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_PRODUCTS",
+						"type": "DatasetReference"
+					},
+					"name": "srcSQLDB"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_PRODUCTS",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          ProductID as integer,",
+				"          ProductName as string,",
+				"          UnitPrice as decimal(10,0),",
+				"          Description as string,",
+				"          CategoryID as integer,",
+				"          CreatedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ffproduct",
+				"source(output(",
+				"          ProductID as integer,",
+				"          ProductName as string,",
+				"          UnitPrice as decimal(10,2),",
+				"          Description as string,",
+				"          CategoryID as integer,",
+				"          CreatedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> srcSQLDB",
+				"ffproduct, srcSQLDB exists(ffproduct@ProductID == srcSQLDB@ProductID,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ProductID as integer,",
+				"          ProductName as string,",
+				"          UnitPrice as decimal(10,2),",
+				"          Description as string,",
+				"          CategoryID as integer,",
+				"          CreatedDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          ProductID,",
+				"          ProductName,",
+				"          UnitPrice,",
+				"          Description,",
+				"          CategoryID,",
+				"          CreatedDate",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
