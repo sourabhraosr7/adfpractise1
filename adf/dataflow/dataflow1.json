@@ -26,11 +26,24 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_PRODUCTS",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
 				}
 			],
 			"transformations": [
 				{
 					"name": "exists1"
+				},
+				{
+					"name": "exists2"
+				},
+				{
+					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -60,6 +73,10 @@
 				"ffproduct, srcSQLDB exists(ffproduct@ProductID == srcSQLDB@ProductID,",
 				"     negate:true,",
 				"     broadcast: 'auto')~> exists1",
+				"ffproduct, srcSQLDB exists(ffproduct@ProductID == srcSQLDB@ProductID,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists2",
+				"exists2 alterRow(updateIf(1==1)) ~> alterRow1",
 				"exists1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -84,7 +101,33 @@
 				"          Description,",
 				"          CategoryID,",
 				"          CreatedDate",
-				"     )) ~> sink1"
+				"     )) ~> sink1",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          ProductID as integer,",
+				"          ProductName as string,",
+				"          UnitPrice as decimal(10,2),",
+				"          Description as string,",
+				"          CategoryID as integer,",
+				"          CreatedDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:true,",
+				"     upsertable:false,",
+				"     keys:['ProductID'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          ProductID,",
+				"          ProductName,",
+				"          UnitPrice,",
+				"          Description,",
+				"          CategoryID,",
+				"          CreatedDate",
+				"     )) ~> sink2"
 			]
 		}
 	}
