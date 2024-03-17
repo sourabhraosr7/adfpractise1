@@ -2,7 +2,7 @@
 	"name": "TR_API",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -16,7 +16,7 @@
 			"recurrence": {
 				"frequency": "Week",
 				"interval": 15,
-				"startTime": "2024-03-17T23:35:00",
+				"startTime": "2024-03-17T23:38:00",
 				"timeZone": "India Standard Time"
 			}
 		}
