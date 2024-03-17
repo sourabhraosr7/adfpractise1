@@ -26,6 +26,9 @@
 		"LS_PROD_SCD_properties_typeProperties_url": {
 			"value": "https://str1234s.dfs.core.windows.net/"
 		},
+		"LS_REST_API_properties_typeProperties_url": {
+			"value": "https://api-generator.retool.com/qZc877/data"
+		},
 		"LS_TXT_properties_typeProperties_url": {
 			"value": "https://str1234s.dfs.core.windows.net/"
 		},

@@ -35,6 +35,10 @@
 			"type": "string",
 			"defaultValue": "https://str1234s.dfs.core.windows.net/"
 		},
+		"LS_REST_API_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api-generator.retool.com/qZc877/data"
+		},
 		"LS_TXT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://str1234s.dfs.core.windows.net/"
@@ -87,12 +91,35 @@
 					"LS_PROD_SCD_properties_typeProperties_url": {
 						"value": "[parameters('LS_PROD_SCD_properties_typeProperties_url')]"
 					},
+					"LS_REST_API_properties_typeProperties_url": {
+						"value": "[parameters('LS_REST_API_properties_typeProperties_url')]"
+					},
 					"LS_TXT_properties_typeProperties_url": {
 						"value": "[parameters('LS_TXT_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adfproj99_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfproj99_ArmTemplate_0')]"
+			]
 		}
 	]
 }
