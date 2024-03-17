@@ -31,6 +31,9 @@
 		},
 		"LS_TXT_properties_typeProperties_url": {
 			"value": "https://str1234s.dfs.core.windows.net/"
+		},
+		"EVT_TRIG_CSC_PARQ_properties_typeProperties_scope": {
+			"value": "/subscriptions/115b31c0-ccbd-4765-975f-5124b40903c9/resourceGroups/rg-proj123/providers/Microsoft.Storage/storageAccounts/str1234s"
 		}
 	}
 }
