@@ -2,7 +2,7 @@
 	"name": "EVT_TRIG_CSC_PART",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
