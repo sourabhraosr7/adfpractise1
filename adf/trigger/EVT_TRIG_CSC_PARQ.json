@@ -1,0 +1,24 @@
+{
+	"name": "EVT_TRIG_CSC_PARQ",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_csv_parquet",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/product.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/115b31c0-ccbd-4765-975f-5124b40903c9/resourceGroups/rg-proj123/providers/Microsoft.Storage/storageAccounts/str1234s",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
