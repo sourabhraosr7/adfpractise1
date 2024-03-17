@@ -1,0 +1,116 @@
+{
+	"name": "pl_api_parquet",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_id']"
+								},
+								"sink": {
+									"name": "product_id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_weight_g']"
+								},
+								"sink": {
+									"name": "product_weight_g"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_width_cm']"
+								},
+								"sink": {
+									"name": "product_width_cm"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_height_cm']"
+								},
+								"sink": {
+									"name": "product_height_cm"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_length_cm']"
+								},
+								"sink": {
+									"name": "product_length_cm"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product_category_name']"
+								},
+								"sink": {
+									"name": "product_category_name"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_REST_API",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_API_PARQUET",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
