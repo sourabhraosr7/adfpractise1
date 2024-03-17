@@ -790,8 +790,9 @@
 					"recurrence": {
 						"frequency": "Week",
 						"interval": 15,
-						"startTime": "2024-03-17T17:55:00",
-						"timeZone": "India Standard Time"
+						"startTime": "2024-03-17T18:00:00",
+						"timeZone": "India Standard Time",
+						"schedule": {}
 					}
 				}
 			},
