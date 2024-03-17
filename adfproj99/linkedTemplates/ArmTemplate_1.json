@@ -7,7 +7,7 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfproj99"
 		},
-		"EVT_TRIG_CSC_PARQ_properties_typeProperties_scope": {
+		"EVT_TRIG_CSC_PART_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/115b31c0-ccbd-4765-975f-5124b40903c9/resourceGroups/rg-proj123/providers/Microsoft.Storage/storageAccounts/str1234s"
 		}
@@ -905,7 +905,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/EVT_TRIG_CSC_PARQ')]",
+			"name": "[concat(parameters('factoryName'), '/EVT_TRIG_CSC_PART')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -924,7 +924,7 @@
 				"typeProperties": {
 					"blobPathBeginsWith": "/input/blobs/product.csv",
 					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('EVT_TRIG_CSC_PARQ_properties_typeProperties_scope')]",
+					"scope": "[parameters('EVT_TRIG_CSC_PART_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
