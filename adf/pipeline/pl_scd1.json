@@ -19,7 +19,10 @@
 						"referenceName": "dataflow1",
 						"type": "DataFlowReference",
 						"parameters": {
-							"parameter1": "UnitPrice"
+							"parameter1": {
+								"value": "'@{pipeline().DataFactory}'",
+								"type": "Expression"
+							}
 						}
 					},
 					"compute": {
