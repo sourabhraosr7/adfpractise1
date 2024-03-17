@@ -1,8 +1,8 @@
 {
-	"name": "EVT_TRIG_CSC_PARQ",
+	"name": "EVT_TRIG_CSC_PAR",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
